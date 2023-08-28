@@ -1,23 +1,24 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/screens/Home';
+import Login from './src/screens/Login';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ScreenNames } from './src/constants/screenNames';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParams = {
+  [ScreenNames.Home]: undefined;
+  [ScreenNames.Login]: undefined;
+};
 
-function App(): JSX.Element {
+const RootStack = createNativeStackNavigator<RootStackParams>();
+
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={ScreenNames.Home}>
-        <Stack.Screen
-          name={ScreenNames.Home}
-          component={Home}
-          options={{ title: 'Dashboard' }}
-        />
-      </Stack.Navigator>
+      <RootStack.Navigator initialRouteName={ScreenNames.Home}>
+        <RootStack.Screen name={ScreenNames.Home} component={Home} />
+        <RootStack.Screen name={ScreenNames.Login} component={Login} />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 }
-
-export default App;
