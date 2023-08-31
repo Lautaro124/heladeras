@@ -23,7 +23,6 @@ const Home = () => {
 
       timeoutId = setTimeout(() => {
         const value: FreezeType = snapshot.val();
-        console.log(value);
         setFreezes(value);
         setHotFreezes(getHotFreeze(value.json));
       }, 500);
