@@ -1,27 +1,25 @@
 import { StyleSheet, View, Text } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { getDatabase, onValue, ref } from 'firebase/database';
 import Header from '../components/Header';
-import app from '../config/firebase';
 import { Freeze, FreezeType } from '../interface/freeze';
 import Section from '../components/Section';
 import { getHotFreeze } from '../utils/getHotFreeze';
+import database from '@react-native-firebase/database';
 
 const Home = () => {
   const [freezes, setFreezes] = useState<FreezeType>({
     json: [],
   });
   const [hotFreezes, setHotFreezes] = useState<Freeze[]>([]);
+  const reference = database().ref('/test');
 
   useEffect(() => {
-    const database = getDatabase(app);
-    const dbReference = ref(database, 'test');
-    onValue(dbReference, snapshot => {
+    reference.once('value').then(snapshot => {
       const value: FreezeType = snapshot.val();
       setFreezes(value);
       setHotFreezes(getHotFreeze(value.json));
     });
-  }, []);
+  }, [reference]);
 
   return (
     <View style={styles.container}>
@@ -48,6 +46,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   dividerTitle: {
+    paddingVertical: 10,
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
