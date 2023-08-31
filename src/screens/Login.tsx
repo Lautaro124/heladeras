@@ -5,10 +5,18 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../App';
 import { ScreenNames } from '../constants/screenNames';
 import { Button } from '@rneui/themed';
+import { googleSignin } from '../config/googleSignIn';
 
 const Login = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParams>>();
+  const signInWithGoogle = async () => {
+    const user = await googleSignin();
+
+    if (user) {
+      navigation.navigate(ScreenNames.Home);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -17,9 +25,9 @@ const Login = () => {
         radius="sm"
         type="outline"
         onPress={() => {
-          navigation.navigate(ScreenNames.Home);
+          signInWithGoogle();
         }}>
-        Iniciar secion
+        Iniciar secion con google
       </Button>
     </View>
   );
