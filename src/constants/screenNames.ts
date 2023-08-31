@@ -1,5 +1,5 @@
 export enum ScreenNames {
-  Home = 'Home',
-  Login = 'Login',
-  Details = 'Details',
+  Home = 'H.U.A',
+  Login = 'Inicio de secion',
+  Details = 'Detalles',
 }
