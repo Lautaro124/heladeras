@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: '#0D1B2A',
   },
   buttonContainer: {
     gap: 20,
