@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -34,10 +34,11 @@ const Login = () => {
   const onChangeEmail = (text: string) => {
     const emailRegex: RegExp =
       /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (emailRegex.test(text)) {
+    if (!emailRegex.test(text)) {
       setEmailError('El email no cumple con el formato solicitado');
       return;
     }
+    setEmailError('');
     setEmail(text);
   };
 
@@ -46,11 +47,37 @@ const Login = () => {
       setPasswordError('La constasena tiene menos de 6 caracteres');
       return;
     }
+    setPasswordError('');
     setPassword(text);
   };
 
+  const submitSignIn = () => {
+    if (!userIsCorrect()) {
+      return;
+    }
+    signInWithEmailAndPassword(email, password)
+      .then(() => {
+        navigation.navigate(ScreenNames.Home);
+      })
+      .catch(error => {
+        setPasswordError(error.message);
+      });
+  };
+  const submitRegister = () => {
+    if (!userIsCorrect()) {
+      return;
+    }
+    registerWithEmailAndPassword(email, password)
+      .then(() => {
+        navigation.navigate(ScreenNames.Home);
+      })
+      .catch(error => {
+        setPasswordError(error.message);
+      });
+  };
+
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView behavior="height" style={styles.container}>
       <View style={styles.formContainer}>
         <Text style={styles.title}>
           Inicio de secion con Gmail y contraseña
@@ -72,25 +99,14 @@ const Login = () => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button
-            radius="sm"
-            type="solid"
-            onPress={() => {
-              if (userIsCorrect()) {
-                signInWithEmailAndPassword(email, password);
-              }
-            }}>
+          <Button radius="sm" type="solid" onPress={submitSignIn}>
             Iniciar secion
           </Button>
           <Button
             radius="sm"
             type="solid"
             color="secondary"
-            onPress={() => {
-              if (userIsCorrect()) {
-                registerWithEmailAndPassword(email, password);
-              }
-            }}>
+            onPress={submitRegister}>
             Registrar
           </Button>
         </View>
@@ -108,7 +124,7 @@ const Login = () => {
           Iniciar secion con google
         </Button>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
