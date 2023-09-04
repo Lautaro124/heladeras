@@ -8,15 +8,26 @@ import { Button, Divider } from '@rneui/themed';
 import { googleSignin } from '../config/googleSignIn';
 import FormEmail from '../components/FormEmail';
 import GoogleLogo from '../assets/logo-google.png';
+import { setUser } from '../redux/slices/user';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParams>>();
+  const dispatch = useDispatch();
 
   const signInWithGoogle = async () => {
-    const user = await googleSignin();
+    const googleCredentials = await googleSignin();
 
-    if (user) {
+    if (googleCredentials) {
+      dispatch(
+        setUser({
+          uuid: googleCredentials.user.id,
+          name: googleCredentials.user.name ?? '',
+          email: googleCredentials.user.email,
+          avatarUrl: googleCredentials.user.photo ?? '',
+        }),
+      );
       navigation.navigate(ScreenNames.Home);
     }
   };
