@@ -28,7 +28,7 @@ const Login = () => {
           avatarUrl: googleCredentials.user.photo ?? '',
         }),
       );
-      navigation.navigate(ScreenNames.Home);
+      navigation.navigate(ScreenNames.TabNavigation);
     }
   };
 
