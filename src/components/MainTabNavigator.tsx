@@ -4,7 +4,7 @@ import Home from '../screens/Home';
 import Watter from '../screens/Watter';
 import { ScreenNames } from '../constants/screenNames';
 import Icon from 'react-native-vector-icons/Ionicons';
-import FreezeDetail from '../screens/FreezeDetail';
+import CameraScreen from '../screens/CameraScreen';
 import CustomTabNavigator from '../components/CustomTabNavigator';
 import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
@@ -33,7 +33,7 @@ const MainTabNavigator = () => {
       />
       <Tab.Screen
         name={ScreenNames.Details}
-        component={FreezeDetail}
+        component={CameraScreen}
         options={{
           tabBarIcon: () => <CustomTabNavigator />,
         }}
