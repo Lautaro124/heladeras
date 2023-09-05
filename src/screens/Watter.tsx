@@ -6,11 +6,7 @@ import { Divider } from '@rneui/base';
 
 const Watter = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const backgroundOfTanks = {
-    0: '#E0E1DD',
-    1: '#E0E1DD',
-    2: '#E0E1DD',
-  };
+  const backgroundOfTanks = ['#E0E1DD', '#E0E1DD', '#E0E1DD'];
 
   return (
     <View style={styles.container}>

@@ -4,29 +4,49 @@ import Home from '../screens/Home';
 import Watter from '../screens/Watter';
 import { ScreenNames } from '../constants/screenNames';
 import Icon from 'react-native-vector-icons/Ionicons';
+import FreezeDetail from '../screens/FreezeDetail';
+import CustomTabNavigator from '../components/CustomTabNavigator';
+import { StyleSheet, View } from 'react-native';
+import { Text } from 'react-native-paper';
 
 const Tab = createMaterialBottomTabNavigator();
 
 const MainTabNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      initialRouteName={ScreenNames.Home}
+      style={styles.container}
+      screenOptions={{
+        tabBarLabel: '',
+      }}>
       <Tab.Screen
         name={ScreenNames.Home}
         component={Home}
         options={{
-          tabBarLabel: 'Heladeras',
           tabBarIcon: ({ color }) => (
-            <Icon name="home" color={color} size={26} />
+            <View style={styles.tabBarIcon}>
+              <Icon name="home" color={color} size={26} />
+              <Text>Heladeras</Text>
+            </View>
           ),
+        }}
+      />
+      <Tab.Screen
+        name={ScreenNames.Details}
+        component={FreezeDetail}
+        options={{
+          tabBarIcon: () => <CustomTabNavigator />,
         }}
       />
       <Tab.Screen
         name={ScreenNames.Watter}
         component={Watter}
         options={{
-          tabBarLabel: 'Tanques de agua',
           tabBarIcon: ({ color }) => (
-            <Icon name="business" color={color} size={26} />
+            <View style={styles.tabBarIcon}>
+              <Icon name="business" color={color} size={26} />
+              <Text>Tanques</Text>
+            </View>
           ),
         }}
       />
@@ -35,3 +55,18 @@ const MainTabNavigator = () => {
 };
 
 export default MainTabNavigator;
+
+const styles = StyleSheet.create({
+  container: {
+    height: 60,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#fff',
+    elevation: 0,
+  },
+  tabBarIcon: {
+    width: 70,
+    alignItems: 'center',
+  },
+});

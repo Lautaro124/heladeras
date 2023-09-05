@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Login from './src/screens/Login';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -26,8 +27,8 @@ export default function App() {
             component={MainTabNavigator}
             options={{
               title: 'H.U.A',
+              headerLeft: () => <View />,
               headerRight: () => <RigthIcon />,
-              headerBackButtonMenuEnabled: false,
             }}
           />
           <RootStack.Screen name={ScreenNames.Login} component={Login} />
