@@ -17,6 +17,7 @@ const MainTabNavigator = () => {
       initialRouteName={ScreenNames.Home}
       style={styles.container}
       screenOptions={{
+        tabBarColor: 'white',
         tabBarLabel: '',
       }}>
       <Tab.Screen

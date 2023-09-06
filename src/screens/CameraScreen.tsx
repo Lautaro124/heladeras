@@ -1,24 +1,17 @@
-import { StyleSheet, ActivityIndicator } from 'react-native';
-import React, { useEffect } from 'react';
-import { Camera, useCameraDevices } from 'react-native-vision-camera';
-import { getCameraPermissions } from '../config/camerapermision';
+import { Alert, StyleSheet } from 'react-native';
+import React from 'react';
+import { Camera, CameraType } from 'react-native-camera-kit';
 
 const CameraScreen = () => {
-  const devices = useCameraDevices();
-  const device = devices.back;
-
-  useEffect(() => {
-    getCameraPermissions();
-  }, []);
-
-  if (device == null) {
-    return <ActivityIndicator />;
-  }
   return (
-    <Camera style={StyleSheet.absoluteFill} device={device} isActive={true} />
+    <Camera
+      ref={ref => (this.camera = ref)}
+      cameraType={CameraType.Back}
+      scanBarcode={true}
+      onReadCode={event => Alert.alert('QR code found')}
+      style={StyleSheet.absoluteFill}
+    />
   );
 };
 
 export default CameraScreen;
-
-const styles = StyleSheet.create({});

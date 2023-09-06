@@ -81,14 +81,17 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 21,
     fontWeight: 'bold',
+    color: '#0D1B2A',
   },
   textBoms: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: '#0D1B2A',
   },
   statusBomb: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: '#0D1B2A',
   },
   groupBombs: {
     flexDirection: 'row',

@@ -27,12 +27,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
+    position: 'relative',
   },
   title: {
     fontSize: 15,
+    color: '#0D1B2A',
+    position: 'absolute',
+    top: 10,
+    left: 10,
   },
   value: {
     fontWeight: 'bold',
     fontSize: 40,
+    color: '#0D1B2A',
   },
 });
