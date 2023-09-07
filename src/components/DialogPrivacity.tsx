@@ -95,9 +95,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 10,
     marginBottom: 5,
+    color: 'black',
   },
   parragraph: {
     fontSize: 15,
+    color: 'black',
   },
   scrollView: {
     maxHeight: '82%',

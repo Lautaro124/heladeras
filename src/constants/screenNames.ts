@@ -3,5 +3,6 @@ export enum ScreenNames {
   Login = 'Inicio de secion',
   TabNavigation = 'Tab Navigation',
   Details = 'Detalles',
+  Camera = 'Camera',
   Watter = 'Watter',
 }

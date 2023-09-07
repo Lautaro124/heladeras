@@ -33,7 +33,7 @@ const MainTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name={ScreenNames.Details}
+        name={ScreenNames.Camera}
         component={CameraScreen}
         options={{
           tabBarIcon: () => <CustomTabNavigator />,

@@ -8,11 +8,14 @@ import { store } from './src/redux/store';
 import { Provider } from 'react-redux';
 import MainTabNavigator from './src/components/MainTabNavigator';
 import RigthIcon from './src/components/RigthIcon';
+import FreezeDetail from './src/screens/FreezeDetail';
+import type { Freeze } from './src/interface/freeze';
 
 export type RootStackParams = {
   [ScreenNames.Home]: undefined;
   [ScreenNames.TabNavigation]: undefined;
   [ScreenNames.Login]: undefined;
+  [ScreenNames.Details]: Freeze;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParams>();
@@ -32,6 +35,10 @@ export default function App() {
             }}
           />
           <RootStack.Screen name={ScreenNames.Login} component={Login} />
+          <RootStack.Screen
+            name={ScreenNames.Details}
+            component={FreezeDetail}
+          />
         </RootStack.Navigator>
       </NavigationContainer>
     </Provider>
