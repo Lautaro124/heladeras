@@ -1,4 +1,5 @@
 import auth from '@react-native-firebase/auth';
+import { Alert } from 'react-native';
 
 export const signInWithEmailAndPassword = async (
   email: string,
@@ -7,8 +8,8 @@ export const signInWithEmailAndPassword = async (
   try {
     const user = await auth().signInWithEmailAndPassword(email, password);
     return user;
-  } catch (err) {
-    return undefined;
+  } catch (error) {
+    return Alert.alert(`Ups sucedio algo: ${error}`);
   }
 };
 
@@ -19,7 +20,7 @@ export const registerWithEmailAndPassword = async (
   try {
     const user = await auth().createUserWithEmailAndPassword(email, password);
     return user;
-  } catch (err) {
-    return undefined;
+  } catch (error) {
+    return Alert.alert(`Ups sucedio algo: ${error}`);
   }
 };

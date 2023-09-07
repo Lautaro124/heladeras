@@ -4,13 +4,17 @@ import { useSelector } from 'react-redux';
 import { type RootState } from '../redux/store';
 
 const RigthIcon = () => {
-  const avatar = useSelector((state: RootState) => state.user.user.avatarUrl);
+  const { avatarUrl, email } = useSelector(
+    (state: RootState) => state.user.user,
+  );
+
   return (
     <Avatar
       size={40}
       rounded
+      title={avatarUrl !== null ? undefined : email.split('')[0]}
       source={{
-        uri: avatar,
+        uri: avatarUrl !== null ? avatarUrl : undefined,
       }}
     />
   );

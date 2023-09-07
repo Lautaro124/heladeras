@@ -1,5 +1,6 @@
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
+import { Alert } from 'react-native';
 
 export const googleSignin = async () => {
   try {
@@ -19,5 +20,6 @@ export const googleSignin = async () => {
     return userInfo;
   } catch (error) {
     console.error(error);
+    return Alert.alert(`Ups sucedio algo: ${error}`);
   }
 };

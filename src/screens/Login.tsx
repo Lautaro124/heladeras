@@ -23,9 +23,9 @@ const Login = () => {
       dispatch(
         setUser({
           uuid: googleCredentials.user.id,
-          name: googleCredentials.user.name ?? '',
+          name: googleCredentials.user.name,
           email: googleCredentials.user.email,
-          avatarUrl: googleCredentials.user.photo ?? '',
+          avatarUrl: googleCredentials.user.photo,
         }),
       );
       navigation.navigate(ScreenNames.TabNavigation);
