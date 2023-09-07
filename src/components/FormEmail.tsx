@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -10,6 +10,7 @@ import {
   registerWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from '../config/emailAndPassword';
+import DialogPrivacity from './DialogPrivacity';
 
 const FormEmail = () => {
   const navigation =
@@ -18,6 +19,7 @@ const FormEmail = () => {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [isVisible, setVisible] = useState(false);
 
   const userIsCorrect = () =>
     emailError.length === 0 && passwordError.length === 0;
@@ -93,6 +95,11 @@ const FormEmail = () => {
         />
       </View>
       <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.privacitiTerms}
+          onPress={() => setVisible(!isVisible)}>
+          <Text style={styles.textTems}>Terminos de privacidad</Text>
+        </TouchableOpacity>
         <Button radius="sm" type="solid" onPress={submitSignIn}>
           Iniciar sesión
         </Button>
@@ -104,6 +111,7 @@ const FormEmail = () => {
           Crear cuenta
         </Button>
       </View>
+      <DialogPrivacity isVisible={isVisible} setVisibility={setVisible} />
     </View>
   );
 };
@@ -113,7 +121,7 @@ export default FormEmail;
 const styles = StyleSheet.create({
   formContainer: {
     width: '95%',
-    flex: 3,
+    flex: 2.5,
     paddingVertical: '15%',
     justifyContent: 'space-evenly',
   },
@@ -139,5 +147,11 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     borderColor: '#E0E1DD',
+  },
+  privacitiTerms: {
+    paddingVertical: 15,
+  },
+  textTems: {
+    fontSize: 15,
   },
 });
