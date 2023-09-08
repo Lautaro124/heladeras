@@ -1,4 +1,4 @@
-import { Alert, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React from 'react';
 import { Camera, CameraType } from 'react-native-camera-kit';
 import { QRData } from '../interface/qrType';
