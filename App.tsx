@@ -16,6 +16,7 @@ export type RootStackParams = {
   [ScreenNames.TabNavigation]: undefined;
   [ScreenNames.Login]: undefined;
   [ScreenNames.Details]: Freeze;
+  [ScreenNames.Camera]: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParams>();
