@@ -4,15 +4,15 @@ const theme = createTheme({
   lightColors: {
     primary: '#4C86A8',
     secondary: '#171d1c',
-    error: '#D7263D',
+    error: '#DD394F',
     background: '#E9E3E6',
     divider: '#5A7D7C',
   },
   darkColors: {
     primary: '#4C86A8',
     secondary: '#E9E3E6',
-    error: '#D7263D',
-    background: '#171D1C',
+    error: '#DD394F',
+    background: '#232323',
     divider: '#5A7D7C',
   },
   spacing: {

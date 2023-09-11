@@ -13,14 +13,13 @@ import DialogPrivacity from './DialogPrivacity';
 
 const useStyle = makeStyles(theme => ({
   formContainer: {
-    width: '95%',
+    width: '100%',
     flex: 2.5,
     paddingVertical: '15%',
+    paddingHorizontal: '2%',
     justifyContent: 'space-evenly',
   },
   inputsContainer: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
     width: '100%',
     gap: theme.spacing.md,
   },
@@ -32,11 +31,12 @@ const useStyle = makeStyles(theme => ({
   },
   buttonContainer: {
     gap: theme.spacing.md,
-    marginTop: theme.spacing.md,
+    marginTop: theme.spacing.sm,
     width: '100%',
   },
   input: {
     width: '100%',
+    padding: 0,
   },
   privacitiTerms: {
     paddingVertical: theme.spacing.lg,
@@ -106,11 +106,12 @@ const FormEmail = () => {
 
   return (
     <View style={styles.formContainer}>
-      <Text style={styles.title}>Inicio de sesión con Gmail y contraseña</Text>
+      {/* <Text style={styles.title}>Inicio de sesión con Gmail y contraseña</Text> */}
       <View style={styles.inputsContainer}>
         <Input
           errorMessage={emailError}
-          style={styles.input}
+          inputContainerStyle={styles.input}
+          containerStyle={styles.input}
           label="Email"
           leftIcon={{
             name: 'email',
@@ -122,7 +123,8 @@ const FormEmail = () => {
           onChangeText={onChangeEmail}
         />
         <Input
-          style={styles.input}
+          inputContainerStyle={styles.input}
+          containerStyle={styles.input}
           errorMessage={passwordError}
           secureTextEntry
           leftIcon={{
