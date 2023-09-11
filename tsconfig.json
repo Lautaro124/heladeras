@@ -1,15 +1,10 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
-    "jsx": "react-native"
+    "baseUrl": ".",
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "./node_modules/**/*.ts",
-    "./node_modules/**/*.js",
-    "*.js",
-    "*.ts",
-    "*.tsx"
-  ]
+  "exclude": [
+    "babel.config.js",
+    "node_modules"
+  ],
 }

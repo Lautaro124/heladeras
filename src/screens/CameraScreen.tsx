@@ -4,7 +4,7 @@ import { Camera, CameraType } from 'react-native-camera-kit';
 import { QRData } from '../interface/qrType';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../App';
-import { ScreenNames } from '../constants/screenNames';
+import { ScreenNames } from '../enum/screenNames';
 import { Freeze } from '../interface/freeze';
 
 type Props = NativeStackScreenProps<RootStackParams, ScreenNames.Camera>;

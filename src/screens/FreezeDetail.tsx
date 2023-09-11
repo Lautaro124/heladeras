@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RootStackParams } from '../../App';
-import { ScreenNames } from '../constants/screenNames';
+import { ScreenNames } from '../enum/screenNames';
 import { Button, Divider } from '@rneui/themed';
 
 type Props = NativeStackScreenProps<RootStackParams, ScreenNames.Details>;

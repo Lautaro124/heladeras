@@ -4,7 +4,7 @@ import { Freeze } from '../interface/freeze';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParams } from '../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { ScreenNames } from '../constants/screenNames';
+import { ScreenNames } from '../enum/screenNames';
 
 const Section = ({
   name,

@@ -2,7 +2,7 @@ import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Home from '../screens/Home';
 import Watter from '../screens/Watter';
-import { ScreenNames } from '../constants/screenNames';
+import { ScreenNames } from '../enum/screenNames';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CameraScreen from '../screens/CameraScreen';
 import CustomTabNavigator from '../components/CustomTabNavigator';

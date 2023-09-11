@@ -1,20 +1,48 @@
-import { StyleSheet, View, KeyboardAvoidingView, Image } from 'react-native';
+import { View, KeyboardAvoidingView, Image } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../App';
-import { ScreenNames } from '../constants/screenNames';
+import { ScreenNames } from '../enum/screenNames';
 import { Button, Divider } from '@rneui/themed';
 import { googleSignin } from '../config/googleSignIn';
 import FormEmail from '../components/FormEmail';
 import GoogleLogo from '../assets/logo-google.png';
+import { makeStyles } from '@rneui/themed';
 import { setUser } from '../redux/slices/user';
 import { useDispatch } from 'react-redux';
+
+const useStyle = makeStyles(theme => ({
+  container: {
+    flex: 1,
+    width: '100%',
+    padding: theme.spacing.sm,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    backgroundColor: theme.colors.background,
+  },
+  dividerContainer: {
+    width: '85%',
+    height: theme.spacing.sm,
+    marginVertical: theme.spacing.sm,
+  },
+  image: {
+    width: 30,
+    height: 30,
+    marginRight: theme.spacing.lg,
+  },
+  socialLoginContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+}));
 
 const Login = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParams>>();
   const dispatch = useDispatch();
+  const styles = useStyle();
 
   const signInWithGoogle = async () => {
     const googleCredentials = await googleSignin();
@@ -41,7 +69,6 @@ const Login = () => {
       <View style={styles.socialLoginContainer}>
         <Button
           radius="sm"
-          color="secondary"
           type="outline"
           onPress={() => {
             signInWithGoogle();
@@ -59,29 +86,3 @@ const Login = () => {
 };
 
 export default Login;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%',
-    padding: 5,
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  dividerContainer: {
-    width: '80%',
-    height: 10,
-    marginVertical: 20,
-  },
-  image: {
-    width: 30,
-    height: 30,
-    marginRight: 15,
-  },
-  socialLoginContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
