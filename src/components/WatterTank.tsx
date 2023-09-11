@@ -1,26 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
+import { makeStyles, Text } from '@rneui/themed';
 
 interface WatterTankProps {
   title: string;
   value: string;
-  bacground: string;
 }
 
-const WatterTank = ({ title, value, bacground }: WatterTankProps) => {
-  const containerStyle = [{ backgroundColor: bacground }, styles.container];
-
-  return (
-    <View style={containerStyle}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.value}>{value}</Text>
-    </View>
-  );
-};
-
-export default WatterTank;
-
-const styles = StyleSheet.create({
+const useStyle = makeStyles(theme => ({
   container: {
     width: '100%',
     height: '49%',
@@ -28,17 +15,29 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 5,
     position: 'relative',
+    backgroundColor: theme.colors.primary,
   },
   title: {
     fontSize: 15,
-    color: '#0D1B2A',
     position: 'absolute',
-    top: 10,
-    left: 10,
+    top: theme.spacing.md,
+    left: theme.spacing.md,
   },
   value: {
     fontWeight: 'bold',
     fontSize: 40,
-    color: '#0D1B2A',
   },
-});
+}));
+
+const WatterTank = ({ title, value }: WatterTankProps) => {
+  const styles = useStyle();
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.value}>{value}</Text>
+    </View>
+  );
+};
+
+export default WatterTank;

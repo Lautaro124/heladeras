@@ -1,33 +1,77 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { View } from 'react-native';
 import WatterTank from '../components/WatterTank';
 import React, { useState } from 'react';
-import { ButtonGroup } from '@rneui/themed';
-import { Divider } from '@rneui/base';
+import { ButtonGroup, makeStyles, Text } from '@rneui/themed';
+
+const useStyle = makeStyles(theme => ({
+  container: {
+    flex: 1,
+    flexWrap: 'wrap',
+    backgroundColor: theme.colors.background,
+    width: '100%',
+    padding: theme.spacing.sm,
+  },
+  tanksContainer: {
+    flex: 2,
+    width: '100%',
+    flexWrap: 'wrap',
+    gap: theme.spacing.sm,
+    justifyContent: 'space-around',
+  },
+  bombsContainer: {
+    paddingTop: theme.spacing.lg,
+    flex: 2,
+    width: '100%',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    padding: theme.spacing.sm,
+    gap: theme.spacing.lg,
+  },
+  boms: {
+    justifyContent: 'space-evenly',
+    height: '50%',
+    gap: theme.spacing.md,
+  },
+  title: {
+    fontSize: 21,
+    fontWeight: 'bold',
+  },
+  textBoms: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  statusBomb: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  groupBombs: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: theme.spacing.lg,
+    alignItems: 'center',
+  },
+  buttonGroupContainer: {
+    backgroundColor: theme.colors.background,
+    // borderColor: theme.colors.primary,
+  },
+}));
 
 const Watter = () => {
+  const styles = useStyle();
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const backgroundOfTanks = ['#E0E1DD', '#E0E1DD', '#E0E1DD'];
-
   return (
     <View style={styles.container}>
       <View style={styles.tanksContainer}>
-        <WatterTank
-          title="Tanque de agua"
-          value="80%"
-          bacground={backgroundOfTanks[selectedIndex]}
-        />
-        <WatterTank
-          title="Cisterna"
-          value="60%"
-          bacground={backgroundOfTanks[selectedIndex]}
-        />
+        <WatterTank title="Tanque principal" value="80%" />
+        <WatterTank title="Cisterna" value="60%" />
       </View>
       <View style={styles.bombsContainer}>
-        <Divider />
         <Text style={styles.title}>Bombas de agua</Text>
         <ButtonGroup
           buttons={['Automatico', 'Apgado', 'Manual']}
           selectedIndex={selectedIndex}
+          containerStyle={styles.buttonGroupContainer}
+          buttonStyle={styles.buttonGroupContainer}
           onPress={value => {
             setSelectedIndex(value);
           }}
@@ -39,7 +83,7 @@ const Watter = () => {
           </View>
           <View style={styles.groupBombs}>
             <Text style={styles.textBoms}>Bomba 2</Text>
-            <Text style={styles.statusBomb}>Prendido</Text>
+            <Text style={styles.statusBomb}>Encendido</Text>
           </View>
         </View>
       </View>
@@ -48,55 +92,3 @@ const Watter = () => {
 };
 
 export default Watter;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexWrap: 'wrap',
-    backgroundColor: '#F5FCFF',
-    width: '100%',
-    padding: 5,
-  },
-  tanksContainer: {
-    flex: 2,
-    width: '100%',
-    flexWrap: 'wrap',
-    gap: 5,
-    justifyContent: 'space-around',
-  },
-  bombsContainer: {
-    paddingTop: 10,
-    flex: 2,
-    width: '100%',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-    padding: 5,
-    gap: 20,
-  },
-  boms: {
-    justifyContent: 'space-evenly',
-    height: '50%',
-    gap: 10,
-  },
-  title: {
-    fontSize: 21,
-    fontWeight: 'bold',
-    color: '#0D1B2A',
-  },
-  textBoms: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#0D1B2A',
-  },
-  statusBomb: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#0D1B2A',
-  },
-  groupBombs: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 15,
-    alignItems: 'center',
-  },
-});

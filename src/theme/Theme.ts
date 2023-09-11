@@ -1,16 +1,18 @@
-import { createTheme } from '@rneui/themed';
+import { createTheme, darkColors, lightColors } from '@rneui/themed';
 
 const theme = createTheme({
   lightColors: {
+    ...lightColors,
     primary: '#4C86A8',
-    secondary: '#171d1c',
+    secondary: '#5A7D7C',
     error: '#DD394F',
     background: '#E9E3E6',
     divider: '#5A7D7C',
   },
   darkColors: {
+    ...darkColors,
     primary: '#4C86A8',
-    secondary: '#E9E3E6',
+    secondary: '#5A7D7C',
     error: '#DD394F',
     background: '#232323',
     divider: '#5A7D7C',
@@ -20,7 +22,7 @@ const theme = createTheme({
     md: 10,
     lg: 15,
   },
-  mode: 'dark',
+  // mode: 'dark',
 });
 
 export default theme;
