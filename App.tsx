@@ -28,7 +28,14 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <NavigationContainer>
-          <RootStack.Navigator initialRouteName={ScreenNames.Login}>
+          <RootStack.Navigator
+            initialRouteName={ScreenNames.Login}
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: '#2C2B3C',
+              },
+              headerTintColor: 'white',
+            }}>
             <RootStack.Screen
               name={ScreenNames.TabNavigation}
               component={MainTabNavigator}

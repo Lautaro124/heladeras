@@ -16,18 +16,26 @@ const MainTabNavigator = () => {
     <Tab.Navigator
       initialRouteName={ScreenNames.Home}
       style={styles.container}
+      // eslint-disable-next-line react-native/no-inline-styles
+      barStyle={{
+        backgroundColor: '#2C2B3C',
+      }}
       screenOptions={{
-        tabBarColor: 'white',
+        tabBarColor: '#2C2B3C',
         tabBarLabel: '',
       }}>
       <Tab.Screen
         name={ScreenNames.Home}
         component={Home}
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ focused }) => (
             <View style={styles.tabBarIcon}>
-              <Icon name="home" color={color} size={26} />
-              <Text>Heladeras</Text>
+              <Icon
+                name="home"
+                color={focused ? '#232323' : '#E9E3E6'}
+                size={26}
+              />
+              <Text style={styles.label}>Heladeras</Text>
             </View>
           ),
         }}
@@ -43,10 +51,14 @@ const MainTabNavigator = () => {
         name={ScreenNames.Watter}
         component={Watter}
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ focused }) => (
             <View style={styles.tabBarIcon}>
-              <Icon name="business" color={color} size={26} />
-              <Text>Tanques</Text>
+              <Icon
+                name="business"
+                color={focused ? '#232323' : '#E9E3E6'}
+                size={26}
+              />
+              <Text style={styles.label}>Tanques</Text>
             </View>
           ),
         }}
@@ -69,5 +81,8 @@ const styles = StyleSheet.create({
   tabBarIcon: {
     width: 70,
     alignItems: 'center',
+  },
+  label: {
+    color: '#fff',
   },
 });

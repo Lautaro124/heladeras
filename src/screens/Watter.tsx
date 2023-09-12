@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import WatterTank from '../components/WatterTank';
 import React, { useState } from 'react';
 import { ButtonGroup, makeStyles, Text } from '@rneui/themed';
+import BombsSection from '../components/BombsSection';
 
 const useStyle = makeStyles(theme => ({
   container: {
@@ -31,6 +32,7 @@ const useStyle = makeStyles(theme => ({
     justifyContent: 'space-evenly',
     height: '50%',
     gap: theme.spacing.md,
+    marginTop: theme.spacing.lg,
   },
   title: {
     fontSize: 21,
@@ -44,15 +46,8 @@ const useStyle = makeStyles(theme => ({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  groupBombs: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: theme.spacing.lg,
-    alignItems: 'center',
-  },
   buttonGroupContainer: {
     backgroundColor: theme.colors.background,
-    // borderColor: theme.colors.primary,
   },
 }));
 
@@ -77,14 +72,10 @@ const Watter = () => {
           }}
         />
         <View style={styles.boms}>
-          <View style={styles.groupBombs}>
-            <Text style={styles.textBoms}>Bomba 1</Text>
-            <Text style={styles.statusBomb}>Apagado</Text>
-          </View>
-          <View style={styles.groupBombs}>
-            <Text style={styles.textBoms}>Bomba 2</Text>
-            <Text style={styles.statusBomb}>Encendido</Text>
-          </View>
+          <BombsSection title="Bomba 1" status="Encendido" />
+          <BombsSection title="Bomba 2" status="Apagado" />
+          <BombsSection title="Bomba de repuesto" status="Apagado" />
+          <BombsSection title="Bomba de repuesto 2" status="Apagado" />
         </View>
       </View>
     </View>

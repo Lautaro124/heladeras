@@ -85,7 +85,7 @@ const FormEmail = () => {
     }
     signInWithEmailAndPassword(email, password)
       .then(() => {
-        navigation.navigate(ScreenNames.Home);
+        navigation.navigate(ScreenNames.TabNavigation);
       })
       .catch(error => {
         setPasswordError(error.message);
@@ -97,7 +97,7 @@ const FormEmail = () => {
     }
     registerWithEmailAndPassword(email, password)
       .then(() => {
-        navigation.navigate(ScreenNames.Home);
+        navigation.navigate(ScreenNames.TabNavigation);
       })
       .catch(error => {
         setPasswordError(error.message);
@@ -106,7 +106,6 @@ const FormEmail = () => {
 
   return (
     <View style={styles.formContainer}>
-      {/* <Text style={styles.title}>Inicio de sesión con Gmail y contraseña</Text> */}
       <View style={styles.inputsContainer}>
         <Input
           errorMessage={emailError}
