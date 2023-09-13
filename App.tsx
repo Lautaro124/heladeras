@@ -45,10 +45,19 @@ export default function App() {
                 headerRight: () => <RigthIcon />,
               }}
             />
-            <RootStack.Screen name={ScreenNames.Login} component={Login} />
+            <RootStack.Screen
+              name={ScreenNames.Login}
+              component={Login}
+              options={{
+                headerRight: () => <RigthIcon isLoginScreen />,
+              }}
+            />
             <RootStack.Screen
               name={ScreenNames.Details}
               component={FreezeDetail}
+              options={{
+                headerRight: () => <RigthIcon />,
+              }}
             />
           </RootStack.Navigator>
         </NavigationContainer>

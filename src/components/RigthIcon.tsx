@@ -14,7 +14,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const RigthIcon = () => {
+interface RigthIconProps {
+  isLoginScreen?: boolean;
+}
+
+const RigthIcon = ({ isLoginScreen }: RigthIconProps) => {
   const style = useStyles();
   const { mode, setMode } = useThemeMode();
   const { avatarUrl } = useSelector((state: RootState) => state.user.user);
@@ -31,14 +35,16 @@ const RigthIcon = () => {
         size={30}
         onPress={changeDarkMode}
       />
-      <Avatar
-        size={40}
-        rounded
-        title={avatarUrl!.length === 0 ? 'I' : undefined}
-        source={{
-          uri: avatarUrl!.length !== 0 ? avatarUrl ?? '' : undefined,
-        }}
-      />
+      {!isLoginScreen && (
+        <Avatar
+          size={40}
+          rounded
+          title={avatarUrl!.length === 0 ? 'I' : undefined}
+          source={{
+            uri: avatarUrl!.length !== 0 ? avatarUrl ?? '' : undefined,
+          }}
+        />
+      )}
     </View>
   );
 };
