@@ -22,7 +22,7 @@ const theme = createTheme({
     md: 10,
     lg: 15,
   },
-  // mode: 'dark',
+  mode: 'light',
 });
 
 export default theme;
