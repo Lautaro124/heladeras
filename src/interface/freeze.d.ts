@@ -1,5 +1,6 @@
-export type FreezeType = {
-  json: Freeze[];
+export type FirebasetData = {
+  json?: Freeze[];
+  tanque?: string;
 };
 
 export interface Freeze {

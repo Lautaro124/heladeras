@@ -1,8 +1,12 @@
 import { View } from 'react-native';
 import WatterTank from '../components/WatterTank';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ButtonGroup, makeStyles, Text } from '@rneui/themed';
+import database, {
+  type FirebaseDatabaseTypes,
+} from '@react-native-firebase/database';
 import BombsSection from '../components/BombsSection';
+import { FirebasetData } from 'interface/freeze';
 
 const useStyle = makeStyles(theme => ({
   container: {
@@ -53,11 +57,35 @@ const useStyle = makeStyles(theme => ({
 
 const Watter = () => {
   const styles = useStyle();
+  const reference = database().ref('/test');
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [tank, setTank] = useState('');
+
+  useEffect(() => {
+    let timeoutId: string | number | NodeJS.Timeout | undefined;
+    const handleSnapshot = (snapshot: FirebaseDatabaseTypes.DataSnapshot) => {
+      clearTimeout(timeoutId);
+
+      timeoutId = setTimeout(() => {
+        const value: FirebasetData = snapshot.val();
+        if (value.tanque) {
+          setTank(value.tanque);
+        }
+      }, 500);
+    };
+
+    reference.on('value', handleSnapshot);
+
+    return () => {
+      reference.off('value', handleSnapshot);
+      clearTimeout(timeoutId);
+    };
+  }, [setTank, reference]);
+
   return (
     <View style={styles.container}>
       <View style={styles.tanksContainer}>
-        <WatterTank title="Tanque principal" value="80%" />
+        <WatterTank title="Tanque principal" value={tank + '%'} />
         <WatterTank title="Cisterna" value="60%" />
       </View>
       <View style={styles.bombsContainer}>

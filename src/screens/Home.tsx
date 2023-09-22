@@ -1,7 +1,7 @@
 import { View, ScrollView } from 'react-native';
 import { Button, Text, makeStyles } from '@rneui/themed';
 import React, { useEffect, useState } from 'react';
-import { Freeze, FreezeType } from '../interface/freeze';
+import { Freeze, FirebasetData } from '../interface/freeze';
 import Section from '../components/Section';
 import database, {
   type FirebaseDatabaseTypes,
@@ -58,8 +58,10 @@ const Home = () => {
       clearTimeout(timeoutId);
 
       timeoutId = setTimeout(() => {
-        const value: FreezeType = snapshot.val();
-        setFreezes(getHotFreeze(value.json, canSeeAllFreeze));
+        const value: FirebasetData = snapshot.val();
+        if (value.json) {
+          setFreezes(getHotFreeze(value.json, canSeeAllFreeze));
+        }
       }, 500);
     };
 
@@ -86,13 +88,17 @@ const Home = () => {
         />
       </View>
       <View style={styles.bottomContainer}>
-        <ScrollView style={styles.scrollView}>
-          <View style={styles.sectionContainer}>
-            {freezes.map(freeze => (
-              <Section key={freeze!.name} {...freeze} />
-            ))}
-          </View>
-        </ScrollView>
+        {freezes.length === 0 ? (
+          <Text>No hay heladeras.</Text>
+        ) : (
+          <ScrollView style={styles.scrollView}>
+            <View style={styles.sectionContainer}>
+              {freezes.map(freeze => (
+                <Section key={freeze!.name} {...freeze} />
+              ))}
+            </View>
+          </ScrollView>
+        )}
       </View>
     </View>
   );
